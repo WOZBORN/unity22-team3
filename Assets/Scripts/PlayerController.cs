@@ -13,21 +13,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject defeat;
     private int lineToMove = 1;
     public float lineDistance = 4;
+    private bool isDefeat = false;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            defeat.SetActive(true);
-        }
-    }
+    
 
     private void Update()
     {
+       
+        
             if (SwipeController.swipeRight)
             {
                 if (lineToMove < 2)
@@ -53,6 +50,7 @@ public class PlayerController : MonoBehaviour
                 targetPosition += Vector3.right * lineDistance;
 
             transform.position = targetPosition;
+        
     }
 
     private void Jump()
@@ -62,8 +60,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        dir.z = speed;
-        dir.y += gravity * Time.fixedDeltaTime;
-        controller.Move(dir * Time.fixedDeltaTime);
+        
+            dir.z = speed;
+            dir.y += gravity * Time.fixedDeltaTime;
+            controller.Move(dir * Time.fixedDeltaTime);
+        
     }
 }
