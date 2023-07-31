@@ -12,15 +12,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
     [SerializeField] private GameObject losePanel;
+    
 
     private int lineToMove = 1;
-    public float lineDistance = 2;
+    public float lineDistance = 2; 
+    private float maxSpeed = 85;
 
     void Start()
     {
         Time.timeScale = 1;
         //anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        StartCoroutine(SpeedIncrease());
     }
     private void Update()
     {
@@ -79,8 +82,17 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.tag == "Enemy")
         {
             losePanel.SetActive(true);
+           
             Time.timeScale = 0;
         }
     }
-
+     private IEnumerator SpeedIncrease()
+    {
+        yield return new WaitForSeconds(1);
+        if (speed < maxSpeed)
+        {
+            speed += 2;
+            StartCoroutine(SpeedIncrease());
+        }
+    }
 }

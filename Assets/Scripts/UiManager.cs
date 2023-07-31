@@ -12,4 +12,9 @@ public class UiManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void MenuClick()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+    }
 }

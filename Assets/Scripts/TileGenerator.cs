@@ -18,6 +18,8 @@ public class TileGenerator : MonoBehaviour
     {
         for (int i = 0; i < startTiles; i++)
         {
+            if (i== 0)
+                SpawnTile(6);
             SpawnTile(Random.Range(0, tilePrefabs.Length));
         }
     }
@@ -43,4 +45,5 @@ public class TileGenerator : MonoBehaviour
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
     }
+
 }
