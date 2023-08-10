@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
     [SerializeField] private GameObject losePanel;
-    
 
     private int lineToMove = 1;
     public float lineDistance = 2; 
