@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    //private Animator anim;
     private Vector3 dir;
     [SerializeField] private int speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
     [SerializeField] private GameObject losePanel;
-    
+    [SerializeField] AudioSource jump;
+    [SerializeField] AudioSource splat;
+
 
     private int lineToMove = 1;
     public float lineDistance = 2; 
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        //anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         StartCoroutine(SpeedIncrease());
     }
@@ -45,8 +45,6 @@ public class PlayerController : MonoBehaviour
                 Jump();
         }
 
-        //if (controller.isGrounded)
-            //anim.SetTrigger("isRunning");
 
         Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
         if (lineToMove == 0)
@@ -66,8 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        jump.Play();
         dir.y = jumpForce;
-        //anim.SetTrigger("isJumping");
     }
 
     void FixedUpdate()
@@ -82,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.tag == "Enemy")
         {
             losePanel.SetActive(true);
-           
+            splat.Play();
             Time.timeScale = 0;
         }
     }
@@ -91,7 +89,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         if (speed < maxSpeed)
         {
-            speed += 2;
+            speed += 1;
             StartCoroutine(SpeedIncrease());
         }
     }

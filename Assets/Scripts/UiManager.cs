@@ -5,7 +5,7 @@ public class UiManager : MonoBehaviour
 {
     public void PlayClick()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ExitClick()
@@ -14,7 +14,7 @@ public class UiManager : MonoBehaviour
     }
     public void MenuClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 }
