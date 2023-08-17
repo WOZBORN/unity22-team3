@@ -13,7 +13,7 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] private Transform player;
     private int startTiles = 6;
 
-
+    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < startTiles; i++)
@@ -24,6 +24,7 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (player.position.z - 60 > spawnPos - (startTiles * tileLength))
