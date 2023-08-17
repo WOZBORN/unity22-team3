@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+    public void ItchIoClick()
+    {
+        Application.OpenURL("https://sanilam.itch.io");
+    }
     public void PlayClick()
     {
         SceneManager.LoadScene(1);
